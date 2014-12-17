@@ -1,7 +1,67 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/Allie/Ada/rails_projects/ship_it/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/Allie/Ada/rails_projects/ship_it/app/controllers/quotes_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        5,
+        1,
+        null,
+        4,
+        4,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        4,
+        null,
+        null,
+        null,
+        1,
+        4,
+        4,
+        116,
+        null,
+        null,
+        1,
+        4,
+        4,
+        4,
+        null,
+        null,
+        null
+      ],
+      "/Users/Allie/Ada/rails_projects/ship_it/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/Allie/Ada/rails_projects/ship_it/app/models/quote.rb": [
+        1,
+        null
+      ]
     },
-    "timestamp": 1418760045
+    "timestamp": 1418846574
   }
 }
