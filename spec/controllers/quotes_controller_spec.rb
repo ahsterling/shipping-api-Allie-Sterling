@@ -15,17 +15,22 @@ describe QuotesController do
         expect(parsed_response).to have_key "usps"
       end
 
-      it 'has the key of "ups"' do
+      it 'usps key has value of array' do
         get :search, package_info: {weight: 123, dest_zip: "98103"}
-        parsed_response = JSON.parse(response.body)
-        expect(parsed_response).to have_key "ups"
+        usps_array = JSON.parse(response.body)['usps']
+        expect(usps_array.class).to eq Array
       end
 
       it 'has the key of "fedex"' do
         get :search, package_info: {weight: 123, dest_zip: "98103"}
         parsed_response = JSON.parse(response.body)
         expect(parsed_response).to have_key "fedex"
+      end
 
+      it 'fedex key has value of array' do
+        get :search, package_info: {weight: 123, dest_zip: "98103"}
+        fedex_array = JSON.parse(response.body)['fedex']
+        expect(fedex_array.class).to eq Array
       end
     end
 
@@ -34,6 +39,18 @@ describe QuotesController do
       it 'returns a 400 without a query' do
         get :search
         expect(response.status).to eq 400
+      end
+
+      it 'returns an error message when there is no weight' do
+        get :search, package_info: {dest_zip: "98103"}
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response).to have_key "error"
+      end
+
+      it 'returns an error message when there is no dest_zip' do
+        get :search, package_info: {weight: 47382}
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response).to have_key "error"
       end
     end
   end

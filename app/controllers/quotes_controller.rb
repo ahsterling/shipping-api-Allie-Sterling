@@ -2,29 +2,13 @@ class QuotesController < ApplicationController
   include ActiveMerchant::Shipping
 
   def search
-    if params['package_info'] == nil
-      render json: {error: "bad request"}, status: :bad_request
+    if params['package_info'] == nil || params['package_info']['dest_zip'] == nil || params['package_info']['weight'] == nil
+      render json: {error: "not enough information in query"}, status: :bad_request
     else
       set_delivery_info(params['package_info'])
       usps_rates = get_usps_rates
-      # package = Package.new(params['package_info']['weight'].to_i, [20, 20, 20])
-      # destination = Location.new(
-      #                        country: "US",
-      #                       #  state: params['package_info']['dest_state'],
-      #                       #  city: params['package_info']['dest_city'],
-      #                        zip: params['package_info']['dest_zip']
-      #                            )
-      # origin = Location.new(country: "US",
-      #                       state: "WA",
-      #                       city: "Seattle",
-      #                       zip: "98103"
-      #                       )
-      # usps = USPS.new(login: ENV['USPS_LOGIN'])
-      # ups_response = usps.find_rates(origin, destination, package)
-      # ups_rates = ups_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}
-
-      # response = {'usps' => "blah", 'ups' => "blah", 'fedex' => 'blah'}
-      render json: {ups: usps_rates, fedex: "blah", usps: "blah"}
+      fedex_rates = get_fedex_rates
+      render json: {usps: usps_rates, fedex: fedex_rates}
     end
   end
 
@@ -38,6 +22,12 @@ class QuotesController < ApplicationController
     @package = Package.new(package_info['weight'].to_i, [20, 20, 20])
     @origin = Location.new(country: "US", zip: "98103")
     @destination = Location.new(country: "US", zip: package_info['dest_zip'])
+  end
+
+  def get_fedex_rates
+    fedex = FedEx.new(test: true, login: ENV['FEDEX_METER'], password: ENV['FEDEX_PASSWORD'], key: ENV['FEDEX_KEY'], account: ENV['FEDEX_ACCOUNT'])
+    fedex_response = fedex.find_rates(@origin, @destination, @package)
+    fedex_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}
   end
 
 end
