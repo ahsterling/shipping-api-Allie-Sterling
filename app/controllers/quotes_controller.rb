@@ -4,6 +4,7 @@ class QuotesController < ApplicationController
   def search
     if params['package_info'] == nil || params['package_info']['dest_zip'] == nil || params['package_info']['weight'] == nil
       render json: {error: "not enough information in query"}, status: :bad_request
+      Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_json, response_body: request.raw_post)
     else
       set_delivery_info(params['package_info'])
       usps_rates = get_usps_rates
