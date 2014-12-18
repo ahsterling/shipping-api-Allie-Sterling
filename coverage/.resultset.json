@@ -13,17 +13,22 @@
         8,
         3,
         null,
+        null,
         5,
         5,
         5,
         5,
+        null,
+        null,
+        null,
+        8,
         null,
         null,
         null,
         1,
         5,
         5,
-        145,
+        120,
         null,
         null,
         1,
@@ -35,7 +40,7 @@
         1,
         5,
         5,
-        40,
+        45,
         null,
         null,
         null
@@ -50,8 +55,12 @@
       "/Users/Allie/Ada/rails_projects/ship_it/app/models/quote.rb": [
         1,
         null
+      ],
+      "/Users/Allie/Ada/rails_projects/ship_it/app/models/request.rb": [
+        1,
+        null
       ]
     },
-    "timestamp": 1418855278
+    "timestamp": 1418923992
   }
 }
