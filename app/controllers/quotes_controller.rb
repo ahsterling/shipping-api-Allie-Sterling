@@ -24,7 +24,7 @@ class QuotesController < ApplicationController
   end
 
   def set_delivery_info(package_info)
-    @package = Package.new(package_info['weight'].to_i, [20, 20, 20])
+    @package = Package.new((package_info['weight'].to_i), [20, 20, 20], units: :imperial)
     @origin = Location.new(country: "US", zip: "98103")
     @destination = Location.new(country: "US", zip: package_info['dest_zip'])
   end
