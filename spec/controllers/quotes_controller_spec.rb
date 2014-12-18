@@ -3,6 +3,12 @@ require 'rails_helper'
 describe QuotesController do
   describe 'GET "search"' do
 
+    it 'creates a request instance and saves it to the database' do
+      requests = Request.all.count
+      get :search, package_info: {weight: 123, dest_zip: "98103"}
+      expect(Request.all.count).to eq requests + 1
+    end
+
     context "successful search" do
       it 'is successful with a query' do
         get :search, package_info: {weight: "123", dest_zip: "98103"}

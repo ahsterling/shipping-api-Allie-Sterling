@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-12-18T09:33:12-08:00">2014-12-18T09:33:12-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-12-18T09:59:52-08:00">2014-12-18T09:59:52-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         9.23
+         10.59
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>5</b> files in total.
-    <b>27</b> relevant lines. 
-    <span class="green"><b>27</b> lines covered</span> and
+    <b>28</b> relevant lines. 
+    <span class="green"><b>28</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -67,7 +67,7 @@
         <td>22</td>
         <td>22</td>
         <td>0</td>
-        <td>11.1</td>
+        <td>13.2</td>
       </tr>
       
       <tr>
@@ -93,9 +93,9 @@
       <tr>
         <td class="strong"><a href="#9ce607f83422882189b19682bc9cc9231352428f" class="src_link" title="app/models/request.rb">app/models/request.rb</a></td>
         <td class="green strong">100.0 %</td>
+        <td>3</td>
         <td>2</td>
-        <td>1</td>
-        <td>1</td>
+        <td>2</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -113,7 +113,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         10.26
+         12.18
        </span>
     </span> hits/line)
   </h2>
@@ -155,7 +155,7 @@
         <td>22</td>
         <td>22</td>
         <td>0</td>
-        <td>11.1</td>
+        <td>13.2</td>
       </tr>
       
     </tbody>
@@ -177,8 +177,8 @@
   <a name="Models"></a>
   <div>
     <b>2</b> files in total.
-    <b>2</b> relevant lines. 
-    <span class="green"><b>2</b> lines covered</span> and
+    <b>3</b> relevant lines. 
+    <span class="green"><b>3</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -208,9 +208,9 @@
       <tr>
         <td class="strong"><a href="#9ce607f83422882189b19682bc9cc9231352428f" class="src_link" title="app/models/request.rb">app/models/request.rb</a></td>
         <td class="green strong">100.0 %</td>
+        <td>3</td>
         <td>2</td>
-        <td>1</td>
-        <td>1</td>
+        <td>2</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -437,8 +437,8 @@
           <code class="ruby">  def search</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="5">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="9" data-linenumber="5">
+          <span class="hits">9</span>
           
           <code class="ruby">    if params[&#39;package_info&#39;] == nil || params[&#39;package_info&#39;][&#39;dest_zip&#39;] == nil || params[&#39;package_info&#39;][&#39;weight&#39;] == nil</code>
         </li>
@@ -461,26 +461,26 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="9">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="9">
+          <span class="hits">6</span>
           
           <code class="ruby">      set_delivery_info(params[&#39;package_info&#39;])</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="10">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="10">
+          <span class="hits">6</span>
           
           <code class="ruby">      usps_rates = get_usps_rates</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="11">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="11">
+          <span class="hits">6</span>
           
           <code class="ruby">      fedex_rates = get_fedex_rates</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="12">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="12">
+          <span class="hits">6</span>
           
           <code class="ruby">      render json: {usps: usps_rates, fedex: fedex_rates}</code>
         </li>
@@ -503,10 +503,10 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="16">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="9" data-linenumber="16">
+          <span class="hits">9</span>
           
-          <code class="ruby">    Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_json, response_body: response.body)</code>
+          <code class="ruby">    Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_s, response_body: response.body.to_s)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
@@ -533,20 +533,20 @@
           <code class="ruby">  def get_usps_rates</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="21">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="21">
+          <span class="hits">6</span>
           
           <code class="ruby">    usps = USPS.new(login: ENV[&#39;USPS_LOGIN&#39;])</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="22">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="22">
+          <span class="hits">6</span>
           
           <code class="ruby">    ups_response = usps.find_rates(@origin, @destination, @package)</code>
         </li>
       
-        <li class="covered" data-hits="120" data-linenumber="23">
-          <span class="hits">120</span>
+        <li class="covered" data-hits="144" data-linenumber="23">
+          <span class="hits">144</span>
           
           <code class="ruby">    ups_response.rates.sort_by(&amp;:price).collect {|rate| [rate.service_name, rate.price]}</code>
         </li>
@@ -569,20 +569,20 @@
           <code class="ruby">  def set_delivery_info(package_info)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="27">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="27">
+          <span class="hits">6</span>
           
           <code class="ruby">    @package = Package.new(package_info[&#39;weight&#39;].to_i, [20, 20, 20])</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="28">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="28">
+          <span class="hits">6</span>
           
           <code class="ruby">    @origin = Location.new(country: &quot;US&quot;, zip: &quot;98103&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="29">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="29">
+          <span class="hits">6</span>
           
           <code class="ruby">    @destination = Location.new(country: &quot;US&quot;, zip: package_info[&#39;dest_zip&#39;])</code>
         </li>
@@ -605,20 +605,20 @@
           <code class="ruby">  def get_fedex_rates</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="33">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="33">
+          <span class="hits">6</span>
           
           <code class="ruby">    fedex = FedEx.new(test: true, login: ENV[&#39;FEDEX_METER&#39;], password: ENV[&#39;FEDEX_PASSWORD&#39;], key: ENV[&#39;FEDEX_KEY&#39;], account: ENV[&#39;FEDEX_ACCOUNT&#39;])</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="34">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="34">
+          <span class="hits">6</span>
           
           <code class="ruby">    fedex_response = fedex.find_rates(@origin, @destination, @package)</code>
         </li>
       
-        <li class="covered" data-hits="45" data-linenumber="35">
-          <span class="hits">45</span>
+        <li class="covered" data-hits="54" data-linenumber="35">
+          <span class="hits">54</span>
           
           <code class="ruby">    fedex_response.rates.sort_by(&amp;:price).collect {|rate| [rate.service_name, rate.price]}</code>
         </li>
@@ -710,8 +710,8 @@
     <h3>app/models/request.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>1</b> relevant lines. 
-      <span class="green"><b>1</b> lines covered</span> and
+      <b>2</b> relevant lines. 
+      <span class="green"><b>2</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -725,7 +725,13 @@
           <code class="ruby">class Request &lt; ActiveRecord::Base</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="2">
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :request_url, :ip_address, presence: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
           
           
           <code class="ruby">end</code>
