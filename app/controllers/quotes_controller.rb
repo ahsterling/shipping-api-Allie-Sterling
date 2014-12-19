@@ -1,18 +1,24 @@
 class QuotesController < ApplicationController
   include ActiveMerchant::Shipping
+  rescue_from ActiveMerchant::ConnectionError, with: :no_response
+  rescue_from Timeout::Error, with: :no_response
 
   def search
+
     if params['package_info'] == nil || params['package_info']['dest_zip'] == nil || params['package_info']['weight'] == nil
       render json: {error: "not enough information in query"}, status: :bad_request
-      # Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_json, response_body: response.body)
     else
       set_delivery_info(params['package_info'])
       usps_rates = get_usps_rates
       fedex_rates = get_fedex_rates
-      render json: {usps: usps_rates, fedex: fedex_rates}
-      # Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_json, response_body: response.body)
-
+      render json: {usps: usps_rates, fedex: fedex_rates}, status: :ok
     end
+    Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_s, response_body: response.body.to_s)
+
+  end
+
+  def no_response
+    render json: {error: "Sorry, there was an error processing your request"}, status: :request_timeout
     Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_s, response_body: response.body.to_s)
 
   end

@@ -8,27 +8,33 @@
       "/Users/Allie/Ada/rails_projects/ship_it/app/controllers/quotes_controller.rb": [
         1,
         1,
+        1,
+        1,
         null,
         1,
+        null,
         9,
         3,
         null,
-        null,
         6,
         6,
         6,
         6,
-        null,
-        null,
         null,
         9,
         null,
         null,
         null,
         1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
         6,
         6,
-        144,
+        36,
         null,
         null,
         1,
@@ -40,7 +46,7 @@
         1,
         6,
         6,
-        54,
+        12,
         null,
         null,
         null
@@ -62,6 +68,6 @@
         null
       ]
     },
-    "timestamp": 1418925592
+    "timestamp": 1419013435
   }
 }

@@ -9,6 +9,7 @@ describe QuotesController do
       expect(Request.all.count).to eq requests + 1
     end
 
+
     context "successful search" do
       it 'is successful with a query' do
         get :search, package_info: {weight: "123", dest_zip: "98103"}
@@ -57,6 +58,14 @@ describe QuotesController do
         get :search, package_info: {weight: 47382}
         parsed_response = JSON.parse(response.body)
         expect(parsed_response).to have_key "error"
+      end
+
+      it 'returns a timeout error' do
+        controller.stub(:search).and_raise(Timeout::Error)
+        get :search, package_info: {weight: 47382, dest_zip: "98103"}
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['error']).to match "Sorry, there was an error processing your request"
+
       end
     end
   end
