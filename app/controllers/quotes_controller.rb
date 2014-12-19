@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
   include ActiveMerchant::Shipping
-  rescue_from ActiveMerchant::ConnectionError, with: :no_response
+  rescue_from ActiveMerchant::Shipping::ResponseError, with: :no_response
   rescue_from Timeout::Error, with: :no_response
 
   def search
