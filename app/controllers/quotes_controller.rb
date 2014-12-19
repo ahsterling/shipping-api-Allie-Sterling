@@ -3,8 +3,11 @@ class QuotesController < ApplicationController
   rescue_from ActiveMerchant::Shipping::ResponseError, with: :no_response
   rescue_from Timeout::Error, with: :no_response
 
-  def search
+  def index
 
+  end
+
+  def search
     if params['package_info'] == nil || params['package_info']['dest_zip'] == nil || params['package_info']['weight'] == nil
       render json: {error: "not enough information in query"}, status: :bad_request
     else
@@ -14,7 +17,28 @@ class QuotesController < ApplicationController
       render json: {usps: usps_rates, fedex: fedex_rates}, status: :ok
     end
     Request.create(request_url: request.original_url, ip_address: request.ip, params: params.to_s, response_body: response.body.to_s)
+  end
 
+  def track
+    if params['carrier_name'] == "usps"
+      usps = USPS.new(login: ENV['USPS_LOGIN'])
+      tracking_info = usps.find_tracking_info(params['tracking_no'])
+      track_array = []
+      tracking_info.shipment_events.each do |event|
+        track_array << [event.name, event.location.city, event.location.state, event.time]
+        # puts "#{event.name} at #{event.location.city}, #{event.location.state} on #{event.time}. #{event.message}"
+      end
+    elsif params['carrier_name'] == "fedex"
+      fedex = FedEx.new(test: true, login: ENV['FEDEX_METER'], password: ENV['FEDEX_PASSWORD'], key: ENV['FEDEX_KEY'], account: ENV['FEDEX_ACCOUNT'])
+      tracking_info = fedex.find_tracking_info(params['tracking_no'])
+      track_array = []
+      tracking_info.shipment_events.each do |event|
+        track_array << [event.name, event.location.city, event.location.state, event.time]
+        # puts "#{event.name} at #{event.location.city}, #{event.location.state} on #{event.time}. #{event.message}"
+      end
+
+    end
+    render json: track_array, status: :ok
   end
 
   def no_response
